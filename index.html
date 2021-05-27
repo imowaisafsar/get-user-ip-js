@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change My IP</title>
+
+</head>
+
+<body>
+
+    <!-- <a href="www.mysite.com/data/uploads/file.mp3?e=14512&ip=IPHERE&amp=blbablaba&next=fasfass">Link 1</a>
+    <a href="www.mysite.com/data/uploads/file.mp3?e=14512&ip=IPHERE&amp=blbablaba&next=fasfass">Link 2</a>
+    <a href="www.mysite.com/data/uploads/file.mp3?e=14512&ip=IPHERE&amp=blbablaba&next=fasfass">Link 3</a>
+    <a href="www.mysite.com/data/uploads/file.mp3?e=14512&ip=IPHERE&amp=blbablaba&next=fasfass">Link 4</a> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $.get('https://www.cloudflare.com/cdn-cgi/trace', function (data) {
+            // Convert key-value pairs to JSON
+            // https://stackoverflow.com/a/39284735/452587
+            data = data.trim().split('\n').reduce(function (obj, pair) {
+                pair = pair.split('=');
+                return obj[pair[0]] = pair[1], obj;
+            }, {});
+            console.log(data);
+            document.write(data.ip);
+        });
+
+
+            // [].slice.call(document.querySelectorAll('a')).forEach(function (a) {
+            //     a.href = a.href.replace(/IPHERE/g, ip);
+            // });
+    </script>
+</body>
+
+</html>
